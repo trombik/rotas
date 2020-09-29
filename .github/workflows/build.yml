@@ -5,12 +5,12 @@ on:
   - push
 jobs:
   lint:
-    name: Lint (ruby ${{ matrix.ruby }}, python ${{ matrix.python }})
+    name: Lint (ruby ${{ matrix.ruby }}, python ${{ matrix.python }}, nodejs ${{ matrix.node-version }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # use a single version in matrix for python and ruby because the subject
-        # of the job is style of code, not the code itself.
+        # use a single version in matrix for python, nodejs and ruby because
+        # the subject of the job is style of code, not the code itself.
         python:
           - 3.7
         ruby:
@@ -21,12 +21,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup ruby
+      - name: Setup ruby ${{ matrix.ruby }}
         uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
 
-      - name: Set up Python 3.7
+      - name: Set up Python ${{ matrix.python }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python }}
