@@ -43,11 +43,49 @@ run `bundle exec rake release`, which will create a git tag for the version,
 push git commits and tags, and push the `.gem` file to
 [rubygems.org](https://rubygems.org).
 
-### Running tests
+### Optional packages
+
+The following packages are optional but useful for development.
+
+* Nodejs (required by `markdownlint-cli`)
+* python 3.x and `pip` (required by `yamllint`)
+
+They are optional and tests are performed in CI. However, you probably want to
+test changes before pushing them.
+
+Install `pip` packages and `nodejs` modules.
 
 ```console
-bundle exec rubocop
+pip install --user -r requirements.txt
+yarn install --frozen-lockfile
+```
+
+### Running tests
+
+The default rake target runs all tests.
+
+```console
+bundle exec rake
+```
+
+You may run individual tests.
+
+```console
+bundle exec rake rubocop
+bundle exec rake yamllint
+bundle exec rake markdownlint
 bundle exec rake spec
+```
+
+### Automate tests with `guard`
+
+Install `Optional packages` above before running `guard`.
+
+```console
+> bundle exec guard
+14:37:51 - INFO - Guard::RSpec is running
+14:37:51 - INFO - Guard is now watching at '/usr/home/trombik/github/trombik/rotas'
+[1] guard(main)>
 ```
 
 ## Contributing

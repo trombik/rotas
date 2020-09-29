@@ -20,4 +20,4 @@ task "markdownlint" do
   sh "node node_modules/markdownlint-cli/markdownlint.js -c .markdownlint.yml -i .markdownlintignore ."
 end
 
-task default: [:rubocop, :yamllint, :spec]
+task default: [:rubocop, :yamllint, :markdownlint, :spec]
