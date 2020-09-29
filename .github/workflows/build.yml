@@ -26,6 +26,7 @@ jobs:
         run: |
           gem install bundler
           bundler --version
+          bundler config
 
       - name: Cache gems
         uses: actions/cache@v2
