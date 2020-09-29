@@ -10,4 +10,9 @@ task "rubocop" do
   sh "rubocop"
 end
 
-task default: [:rubocop, :spec]
+desc "Run yamllint"
+task "yamllint" do
+  sh "yamllint -s -c .yamllint.yml ."
+end
+
+task default: [:rubocop, :yamllint, :spec]

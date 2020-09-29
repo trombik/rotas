@@ -22,6 +22,21 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
 
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          # do not use matrix for python because python is used here just for
+          # yamllint
+          python-version: 3.7
+
+      - name: Install pip
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Install pip dependencies
+        run: |
+          pip install -r requirements.txt
+
       - name: Install bundler
         run: |
           gem install bundler
@@ -42,6 +57,10 @@ jobs:
       - name: Run rubocop
         run: |
           bundle exec rake rubocop
+
+      - name: Run yamllint
+        run: |
+          bundle exec rake yamllint
 
       - name: Run rspec
         run: |
