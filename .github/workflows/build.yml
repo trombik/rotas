@@ -26,6 +26,7 @@ jobs:
         run: |
           gem install bundler
           bundler --version
+          bundler config path vendor/bundle
           bundler config
 
       - name: Cache gems
