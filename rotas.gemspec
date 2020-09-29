@@ -4,6 +4,8 @@ lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "rotas/version"
 
+# there is no point to limit block length in gemspec
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |spec|
   spec.name          = "rotas"
   spec.version       = Rotas::VERSION
@@ -43,3 +45,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rubocop", ">= 0.92.0"
 end
+# rubocop:enable Metrics/BlockLength
