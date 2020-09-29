@@ -11,5 +11,7 @@ require "rotas"
 # require "pry"
 # Pry.start
 
+Rotas::App.run!
+
 require "irb"
 IRB.start(__FILE__)

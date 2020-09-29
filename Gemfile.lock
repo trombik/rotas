@@ -2,15 +2,23 @@ PATH
   remote: .
   specs:
     rotas (0.1.0)
+      sinatra (~> 2.0.8)
 
 GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.1)
     diff-lcs (1.4.4)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
     parallel (1.19.2)
     parser (2.7.1.5)
       ast (~> 2.4.1)
+    rack (2.2.3)
+    rack-protection (2.0.8.1)
+      rack
+    rack-test (1.1.0)
+      rack (>= 1.0, < 3)
     rainbow (3.0.0)
     rake (10.5.0)
     regexp_parser (1.8.1)
@@ -40,6 +48,13 @@ GEM
     rubocop-ast (0.7.1)
       parser (>= 2.7.1.5)
     ruby-progressbar (1.10.1)
+    ruby2_keywords (0.0.2)
+    sinatra (2.0.8.1)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.8.1)
+      tilt (~> 2.0)
+    tilt (2.0.10)
     unicode-display_width (1.7.0)
 
 PLATFORMS
@@ -47,6 +62,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.0)
+  rack-test
   rake (~> 10.0)
   rotas!
   rspec (~> 3.0)
