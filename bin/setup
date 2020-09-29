@@ -1,8 +1,7 @@
-#!/usr/bin/env bash
-set -euo pipefail
-IFS=$'\n\t'
+#!/bin/sh
+set -eu
 set -vx
 
 bundle install
-
-# Do any other automated setup that you need to do here
+pip install --user -r requirements.txt
+yarn install --frozen-lockfile

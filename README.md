@@ -53,7 +53,7 @@ The following packages are optional but useful for development.
 They are optional and tests are performed in CI. However, you probably want to
 test changes before pushing them.
 
-Install `pip` packages and `nodejs` modules.
+Install `pip` packages and `nodejs` modules (`bin/setup` does this for you).
 
 ```console
 pip install --user -r requirements.txt
