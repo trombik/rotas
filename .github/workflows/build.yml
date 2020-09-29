@@ -7,13 +7,14 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    matrix:
-      # use a single version in matrix for python and ruby because the subject
-      # of the job is style of code, not the code itself.
-      python:
-        - 3.7
-      ruby:
-        - 2.6
+    strategy:
+      matrix:
+        # use a single version in matrix for python and ruby because the subject
+        # of the job is style of code, not the code itself.
+        python:
+          - 3.7
+        ruby:
+          - 2.6
     steps:
       - name: Checkout
         uses: actions/checkout@v2
