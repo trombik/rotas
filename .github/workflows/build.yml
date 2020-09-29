@@ -7,6 +7,13 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    matrix:
+      # use a single version in matrix for python and ruby because the subject
+      # of the job is style of code, not the code itself.
+      python:
+        - 3.7
+      ruby:
+        - 2.6
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -14,20 +21,22 @@ jobs:
       - name: Setup ruby
         uses: actions/setup-ruby@v1
         with:
-          # do not use matrix for ruby because the subject of this job is code
-          # styles, not ruby code
-          ruby-version: 2.6
+          ruby-version: ${{ matrix.ruby }}
 
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
-          # do not use matrix for python because python is used here just for
-          # yamllint
-          python-version: 3.7
+          python-version: ${{ matrix.python }}
 
       - name: Install pip
         run: |
           python -m pip install --upgrade pip
+
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-${{ matrix.python }}-pip-${{ hashFiles('**/requirements.txt') }}
 
       - name: Install pip dependencies
         run: |
