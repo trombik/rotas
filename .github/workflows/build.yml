@@ -7,29 +7,21 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        # use a single version in matrix for python, nodejs and ruby because
-        # the subject of the job is style of code, not the code itself.
-        python:
-          - 3.7
-        ruby:
-          - 2.6
-        node-version:
-          - 12.x
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup ruby ${{ matrix.ruby }}
+      # do not use matrix for python, nodejs and ruby because the subject of
+      # the job is style of code, not the code itself.
+      - name: Setup ruby 2.6
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
+          ruby-version: 2.6
 
-      - name: Set up Python ${{ matrix.python }}
+      - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python }}
+          python-version: 3.7
 
       - name: Install pip
         run: |
@@ -71,10 +63,10 @@ jobs:
           yamllint -v
           bundle exec rake yamllint
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 12.x
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
