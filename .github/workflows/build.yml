@@ -4,15 +4,9 @@ on:
   - pull_request
   - push
 jobs:
-  build:
-    name: Ruby version ${{ matrix.ruby }}
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        ruby:
-          - 2.4
-          - 2.5
-          - 2.6
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -20,7 +14,9 @@ jobs:
       - name: Setup ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
+          # do not use matrix for ruby because the subject of this job is code
+          # styles, not ruby code
+          ruby-version: 2.6
 
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
@@ -60,7 +56,43 @@ jobs:
 
       - name: Run yamllint
         run: |
+          yamllint -v
           bundle exec rake yamllint
+
+  build:
+    name: Run rspec (ruby ${{ matrix.ruby }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby:
+          - 2.4
+          - 2.5
+          - 2.6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - name: Install bundler
+        run: |
+          gem install bundler
+          bundler --version
+          bundler config path vendor/bundle
+          bundler config
+
+      - name: Cache gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-${{ matrix.ruby }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+
+      - name: Install dependencies with bunlder
+        run: |
+          bundle install --jobs 4 --retry 3
 
       - name: Run rspec
         run: |
