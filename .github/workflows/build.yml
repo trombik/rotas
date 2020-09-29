@@ -5,7 +5,7 @@ on:
   - push
 jobs:
   lint:
-    name: Lint
+    name: Lint (ruby ${{ matrix.ruby }}, python ${{ matrix.python }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
