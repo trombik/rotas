@@ -22,8 +22,8 @@ module Rotas
     end
 
     register Sinatra::ConfigFile
-    config_file Pathname.new(__FILE__).parent.parent.parent + "config.yml"
-    puts Pathname.new(__FILE__).parent.parent + "config.yml"
+    config_file Pathname.new(__FILE__).parent.parent.parent / "config.yml"
+    puts Pathname.new(__FILE__).parent.parent / "config.yml"
 
     configure :development do |c|
       register Sinatra::Reloader
