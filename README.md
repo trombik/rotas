@@ -29,7 +29,12 @@ gem install rotas
 
 ## Usage
 
-TODO: Write usage instructions here
+```console
+> bundle exec rackup -p 4567
+[2020-10-02 08:43:13] INFO  WEBrick 1.4.2
+[2020-10-02 08:43:13] INFO  ruby 2.6.6 (2020-03-31) [amd64-freebsd13]
+[2020-10-02 08:43:13] INFO  WEBrick::HTTPServer#start: pid=72125 port=4567
+```
 
 ## Development
 

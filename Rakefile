@@ -20,4 +20,9 @@ task "markdownlint" do
   sh "node node_modules/markdownlint-cli/markdownlint.js -c .markdownlint.yml -i .markdownlintignore ."
 end
 
+desc "Generate docs"
+task "docs" do
+  sh "yard -o docs"
+end
+
 task default: [:rubocop, :yamllint, :markdownlint, :spec]
