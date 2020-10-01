@@ -1,0 +1,32 @@
+<% require "pathname" %>
+<% require "digest" %>
+<html>
+  <body>
+    <h1>Project <%= project.name %></h1>
+    <p>Project path: <%= project.path %></p>
+    <% if project.arch && project.arch.length > 0 %>
+      <h2>Supported arch</h2>
+    <% project.arch.each do |name, arch| %>
+      <h3><%= name %></h3>
+      <p>Files</p>
+      <ul>
+        <% arch.sorted_files.each do |f| %>
+          <%
+            case
+            when f.size < 1024
+              human_readable_size = format("%dB", f.size)
+            when f.size >= 1024
+              human_readable_size = format("%1.fKB", f.size / 1024.0)
+            when f.size >= 1024 * 1024
+              human_readable_size = format("%1.fMB", f.size / 1024.0 * 1024)
+            end
+            digest = Digest::SHA1.hexdigest f.read
+          %>
+
+          <li><%= f.basename %> (<%= human_readable_size %>, SHA1 <%= digest %>)</li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% end %>
+  </body>
+</html>

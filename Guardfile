@@ -23,5 +23,4 @@ guard "process",
       name: "markdownlint" do
   watch(/\.md$/)
 end
-
 # vim: ft=ruby
