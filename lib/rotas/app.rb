@@ -22,8 +22,9 @@ module Rotas
     end
 
     register Sinatra::ConfigFile
-    config_file Pathname.new(__FILE__).parent.parent.parent / "config.yml"
-    puts Pathname.new(__FILE__).parent.parent / "config.yml"
+    config_yml = Pathname.new(__FILE__).parent.parent.parent / "config.yml"
+    raise "#{config_yml} cannot be found" unless config_yml.file?
+    config_file config_yml
 
     configure :development do |c|
       register Sinatra::Reloader
