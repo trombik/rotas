@@ -9,7 +9,7 @@ RSpec.describe Rotas::App do
     it "redirects to /projects" do
       get "/"
       expect(last_response.redirection?).to be true
-      expect(last_response.headers['Location'].split("/").last).to eq "projects"
+      expect(last_response.headers["Location"].split("/").last).to eq "projects"
     end
   end
 
@@ -17,7 +17,7 @@ RSpec.describe Rotas::App do
     it "supports gzip" do
       header "Accept-Encoding", "gzip"
       get "/projects"
-      expect(last_response.headers['Content-Encoding']).to eq "gzip"
+      expect(last_response.headers["Content-Encoding"]).to eq "gzip"
     end
   end
 
