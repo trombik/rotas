@@ -26,11 +26,6 @@ module Rotas
     raise "#{config_yml} cannot be found" unless config_yml.file?
     config_file config_yml
 
-    configure :development do |c|
-      register Sinatra::Reloader
-      c.also_reload "./lib/*.rb"
-    end
-
     def projects
       settings.projects.map { |p| Rotas::Project.new(p.transform_keys(&:to_sym)) }
     end
