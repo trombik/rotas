@@ -125,4 +125,4 @@ jobs:
 
       - name: Run rspec
         run: |
-          bundle exec rake spec
+          env RACK_ENV=test bundle exec rake spec
