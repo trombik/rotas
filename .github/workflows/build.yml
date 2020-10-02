@@ -94,9 +94,10 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - 2.4
-          - 2.5
+          # build with stable, maintained releases
+          # see https://www.ruby-lang.org/en/downloads/
           - 2.6
+          - 2.7
     steps:
       - name: Checkout
         uses: actions/checkout@v2
