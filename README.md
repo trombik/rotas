@@ -27,6 +27,10 @@ Or install it yourself as:
 gem install rotas
 ```
 
+## Documentation
+
+The documentation is available at [https://trombik.github.io/rotas/](https://trombik.github.io/rotas/).
+
 ## Usage
 
 ```console
