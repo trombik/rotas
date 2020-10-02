@@ -24,6 +24,7 @@ module Rotas
     register Sinatra::ConfigFile
     config_yml = Pathname.new(__FILE__).parent.parent.parent / "config.yml"
     raise "#{config_yml} cannot be found" unless config_yml.file?
+
     config_file config_yml
 
     def projects
