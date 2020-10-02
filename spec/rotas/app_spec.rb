@@ -5,9 +5,20 @@ RSpec.describe Rotas::App do
 
   let(:app) { Rotas::App }
 
-  it "redirects to /projects" do
-    get "/"
-    expect(last_response.redirection?).to be true
+  describe "/" do
+    it "redirects to /projects" do
+      get "/"
+      expect(last_response.redirection?).to be true
+      expect(last_response.headers['Location'].split("/").last).to eq "projects"
+    end
+  end
+
+  describe "/projects" do
+    it "supports gzip" do
+      header "Accept-Encoding", "gzip"
+      get "/projects"
+      expect(last_response.headers['Content-Encoding']).to eq "gzip"
+    end
   end
 
   %w[stable latest].each do |v|
