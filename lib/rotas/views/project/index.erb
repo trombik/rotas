@@ -22,11 +22,11 @@
             end
             digest = Digest::SHA1.hexdigest f.read
           %>
-
-          <li><%= f.basename %> (<%= human_readable_size %>, SHA1 <%= digest %>)</li>
+        <li><a href="/project/<%= project.name %>/<%= name %>/file/<%= f.basename %>"><%= f.basename %></a> (<%= human_readable_size %>, SHA1 <%= digest %>)</li>
         <% end %>
       </ul>
     <% end %>
     <% end %>
+    <p>[<a href="/projects">Projects</a>]</p>
   </body>
 </html>
