@@ -87,7 +87,11 @@ module Rotas
       begin
         raise Error::ProjectNotFound if projects.nil?
 
-        send_file project.arch[params[:arch].to_sym].file(params[:filename]).realpath
+        filepath = project.arch[params[:arch].to_sym].file(params[:filename]).realpath
+        send_file filepath, { filename: format("%<project>s-%<arch>s-%<filename>s",
+                                               project: params[:name],
+                                               arch: params[:arch],
+                                               filename: params[:filename]) }
       rescue Rotas::Project::Arch::Error::FileNotFound, Error::ProjectNotFound
         status 404
         erb :E404
