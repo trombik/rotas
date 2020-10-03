@@ -56,6 +56,7 @@ RSpec.describe Rotas::App do
       it "returns file" do
         get "/project/foo/esp32/file/#{f}"
         expect(last_response.status).to eq 200
+        expect(last_response.headers["Content-Disposition"]).to eq "attachment; filename=\"foo-esp32-#{f}\""
       end
     end
   end
